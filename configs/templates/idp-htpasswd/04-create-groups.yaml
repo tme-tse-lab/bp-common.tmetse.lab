@@ -1,0 +1,29 @@
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: Administrators 
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false   
+users:
+- telcoadmin
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: Operations 
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false   
+users:
+- operations
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: Vendors 
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false   
+users:
+- vendorcnf1
+- vendorcnf2
+- vendorcnf3

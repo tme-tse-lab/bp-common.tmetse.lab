@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: postinstall-telco-optimized-label-mcp-500-job
+  namespace: {{ $.Values.global.gitops.namespace }}
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: {{ $.Values.global.gitops.service_account }}
+      serviceAccountName: {{ $.Values.global.gitops.service_account_name }}
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: {{ coalesce $.Values.mgmt.gitops.hook_image $.Values.global.gitops.hook_image }}
+          imagePullPolicy: IfNotPresent
+          name: telco-optimized-label-mcp-500-job
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "PostInstall Hook to label standard MCPs for 500 pods"
+{{- if eq $.Values.cluster.mastersSchedulable true }}
+              oc label machineconfigpool master custom-kubelet=max-pods-500
+{{- end }}
+              oc label machineconfigpool worker custom-kubelet=max-pods-500
+              echo "All done! Hooray!"
+              sleep $SLEEP
