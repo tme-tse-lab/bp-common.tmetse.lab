@@ -1,4 +1,5 @@
-{{- if eq ($.Values.cluster.mastersSchedulable | default true) true }}
+{{- $schedulable := $.Values.cluster.mastersSchedulable | default true }}
+{{- if eq $schedulable true }}
 ---
 apiVersion: config.openshift.io/v1
 kind: Scheduler
