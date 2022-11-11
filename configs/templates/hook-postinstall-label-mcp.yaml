@@ -28,7 +28,12 @@ spec:
             - -c
             - |
               echo "PostInstall Hook to label standard MCPs for 500 pods"
-{{- if eq ($.Values.cluster.mastersSchedulable | default true) true }}
+# Management clusters default to Schedulable
+{{- $schedulable := true }}
+{{ if hasKey $.Values "cluster"  -}}
+{{- $schedulable := $.Values.cluster.mastersSchedulable | default true }}
+{{- end }}
+{{- if eq $schedulable true }}
               oc label machineconfigpool master custom-kubelet=max-pods-500
 {{- end }}
               oc label machineconfigpool worker custom-kubelet=max-pods-500

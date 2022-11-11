@@ -1,3 +1,4 @@
+# Management clusters default to Schedulable
 {{- $schedulable := true }}
 {{ if hasKey $.Values "cluster"  -}}
 {{- $schedulable := $.Values.cluster.mastersSchedulable | default true }}
