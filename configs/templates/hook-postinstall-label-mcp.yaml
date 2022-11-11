@@ -28,7 +28,7 @@ spec:
             - -c
             - |
               echo "PostInstall Hook to label standard MCPs for 500 pods"
-# Management clusters default to Schedulable
+              # Management clusters default to Schedulable
 {{- $schedulable := true }}
 {{ if hasKey $.Values "cluster"  -}}
 {{- $schedulable := $.Values.cluster.mastersSchedulable | default true }}
