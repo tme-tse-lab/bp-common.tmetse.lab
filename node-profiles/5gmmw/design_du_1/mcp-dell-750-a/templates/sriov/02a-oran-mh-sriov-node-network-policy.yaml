@@ -1,0 +1,52 @@
+---
+###############################################################################
+# O-RAN Midhaul - VF type netdevice
+###############################################################################
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: oran-mh-netdevice-dell-750-a
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: oran_mh_netdevice_du
+  nodeSelector:
+    ran.openshift.io/sriov: ""
+    ran.openshift.io/oran-mh-netdevice: ""
+    node-role.kubernetes.io/dell-750-a: ""
+  deviceType: netdevice
+  priority: 10
+  #mtu: 1500
+  numVfs: 10
+  nicSelector:
+    #Intel X710 "8086" "1572"
+    #Intel XXV810 "8086" "159b"
+    vendor: "8086"
+    deviceID: "159b"
+    pfNames:
+      - eno12409#4-7
+---
+###############################################################################
+# O-RAN Midhaul - VF type vfio
+###############################################################################
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: oran-mh-vfio-dell-750-a
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: oran_mh_vfio_du
+  nodeSelector:
+    ran.openshift.io/sriov: ""
+    ran.openshift.io/oran-mh-vfio: ""
+    node-role.kubernetes.io/dell-750-a: ""
+  deviceType: vfio-pci
+  priority: 10
+  #mtu: 1500
+  numVfs: 10
+  nicSelector:
+    #Intel X710 "8086" "1572"
+    #Intel XXV810 "8086" "159b"
+    vendor: "8086"
+    deviceID: "159b"
+    pfNames:
+      - eno12409#8-9
