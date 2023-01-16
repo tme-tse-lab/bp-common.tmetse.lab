@@ -1,4 +1,5 @@
-apiVersion: metal3.io/v1alpha1
+#apiVersion: metal3.io/v1alpha1
+apiVersion: apiextensions.k8s.io/v1
 kind: BareMetalHost
 metadata:
   name: {{ $.Values.cluster.name }}-{{ $.Values.node.site }}-{{ $.Values.node.name }}
