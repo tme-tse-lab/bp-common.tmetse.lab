@@ -21,6 +21,7 @@ spec:
     name: performance-patch-dell-750-a
   recommend:
   - machineConfigLabels:
-      machineconfiguration.openshift.io/role: dell-750-a
+      #machineconfiguration.openshift.io/role: dell-750-a
+      machineconfiguration.openshift.io/role: master
     priority: 19
     profile: performance-patch-dell-750-a
