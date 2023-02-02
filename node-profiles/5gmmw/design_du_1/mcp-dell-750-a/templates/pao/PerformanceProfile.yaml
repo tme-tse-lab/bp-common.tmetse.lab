@@ -16,7 +16,8 @@ spec:
     - count: 64
       size: 1G
   machineConfigPoolSelector:
-    pools.operator.machineconfiguration.openshift.io/dell-750-a: ""
+    #pools.operator.machineconfiguration.openshift.io/dell-750-a: ""
+    pools.operator.machineconfiguration.openshift.io/master: ''
   net:
     userLevelNetworking: true
   nodeSelector:
