@@ -13,4 +13,5 @@ spec:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
       operator: Exists
-  replicas: {{ $.Values.mgmt.ingress_replica }}
+  replicas: {{ coalesce $.Values.cluster.ingress_replica $.Values.mgmt.ingress_replica }}
+#
