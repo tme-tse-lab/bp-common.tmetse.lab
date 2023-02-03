@@ -12,7 +12,8 @@ spec:
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-fh-vfio: ""
-    node-role.kubernetes.io/dell-750-a: ""
+    #node-role.kubernetes.io/dell-750-a: ""
+    node-role.kubernetes.io/master: ''
   deviceType: vfio-pci
   priority: 10
   #mtu: 1500
@@ -39,7 +40,8 @@ spec:
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-fh-netdevice: ""
-    node-role.kubernetes.io/dell-750-a: ""
+    #node-role.kubernetes.io/dell-750-a: ""
+    node-role.kubernetes.io/master: ''
   deviceType: netdevice
   priority: 10
   #mtu: 1500
