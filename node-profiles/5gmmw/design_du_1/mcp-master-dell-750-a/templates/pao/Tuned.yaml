@@ -2,14 +2,14 @@
 apiVersion: tuned.openshift.io/v1
 kind: Tuned
 metadata:
-  name: performance-patch-dell-750-a
+  name: performance-patch-master-dell-750-a
   namespace: openshift-cluster-node-tuning-operator
 spec:
   profile:
   - data: |
       [main]
       summary=Configuration changes profile inherited from performance created tuned
-      include=openshift-node-performance-openshift-node-performance-profile-dell-750-a
+      include=openshift-node-performance-openshift-node-performance-profile-master-dell-750-a
       [bootloader]
       cmdline_crash=nohz_full=2-31,34-63
       [sysctl]
@@ -18,10 +18,10 @@ spec:
       group.ice-ptp=0:f:10:*:ice-ptp.*
       [service]
       service.stalld=start,enable
-    name: performance-patch-dell-750-a
+    name: performance-patch-master-dell-750-a
   recommend:
   - machineConfigLabels:
-      #machineconfiguration.openshift.io/role: dell-750-a
+      #machineconfiguration.openshift.io/role: master-dell-750-a
       machineconfiguration.openshift.io/role: master
     priority: 19
-    profile: performance-patch-dell-750-a
+    profile: performance-patch-master-dell-750-a

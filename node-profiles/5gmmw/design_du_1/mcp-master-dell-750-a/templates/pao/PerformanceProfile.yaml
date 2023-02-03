@@ -2,7 +2,7 @@
 apiVersion: performance.openshift.io/v2
 kind: PerformanceProfile
 metadata:
-  name: openshift-node-performance-profile-dell-750-a
+  name: openshift-node-performance-profile-master-dell-750-a
 spec:
   additionalKernelArgs:
   - idle=poll
@@ -16,12 +16,13 @@ spec:
     - count: 64
       size: 1G
   machineConfigPoolSelector:
-    #pools.operator.machineconfiguration.openshift.io/dell-750-a: ""
+    #pools.operator.machineconfiguration.openshift.io/master-dell-750-a: ""
     pools.operator.machineconfiguration.openshift.io/master: ''
   net:
     userLevelNetworking: true
   nodeSelector:
-    node-role.kubernetes.io/dell-750-a: ""
+    #node-role.kubernetes.io/master-dell-750-a: ""
+    node-role.kubernetes.io/master: ''
   numa:
     topologyPolicy: restricted
   realTimeKernel:
