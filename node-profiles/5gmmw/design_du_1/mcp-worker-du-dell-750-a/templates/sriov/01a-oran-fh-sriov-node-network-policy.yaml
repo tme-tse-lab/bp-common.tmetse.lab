@@ -1,0 +1,54 @@
+---
+###############################################################################
+# O-RAN Open Fronthaul - VF type vfio (e.g. cu-plane)
+###############################################################################
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: oran-fh-vfio-{{ $.Values.mcp.net_function }}_{{ $.Values.mcp.mcp_profile }}
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: oran_fh_vfio
+  nodeSelector:
+    ran.openshift.io/sriov: ""
+    ran.openshift.io/oran-fh-vfio: ""
+    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}_{{ $.Values.mcp.mcp_profile }}: ""
+  deviceType: vfio-pci
+  priority: 10
+  #mtu: 1500
+  # Must account for the total of netdevices + vfio devices in the same PFs
+  numVfs: 8
+  nicSelector:
+    #Intel X710 "8086" "1572"
+    #Intel XXV810 "8086" "159b"
+    vendor: "8086"
+    deviceID: "159b"
+    pfNames:
+      - ens2f1#0-3
+---
+###############################################################################
+# O-RAN Open Fronthaul - VF type netdevice (e.g. m-plane)
+###############################################################################
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: oran-fh-netdevice-{{ $.Values.mcp.net_function }}_{{ $.Values.mcp.mcp_profile }}
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: oran_fh_netdevice
+  nodeSelector:
+    ran.openshift.io/sriov: ""
+    ran.openshift.io/oran-fh-netdevice: ""
+    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}_{{ $.Values.mcp.mcp_profile }}: ""
+  deviceType: netdevice
+  priority: 10
+  #mtu: 1500
+  # Must account for the total of netdevices + vfio devices in the same PFs
+  numVfs: 8
+  nicSelector:
+    #Intel X710 "8086" "1572"
+    #Intel XXV810 "8086" "159b"
+    vendor: "8086"
+    deviceID: "159b"
+    pfNames:
+      - ens2f1#4-7
