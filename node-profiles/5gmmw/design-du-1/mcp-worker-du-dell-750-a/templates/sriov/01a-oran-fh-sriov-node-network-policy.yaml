@@ -13,7 +13,9 @@ spec:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-fh-vfio: ""
     node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
-  deviceType: vfio-pci
+  #deviceType: vfio-pci
+  deviceType: netdevice
+  isRdma: true
   priority: 10
   #mtu: 1500
   # Must account for the total of netdevices + vfio devices in the same PFs
