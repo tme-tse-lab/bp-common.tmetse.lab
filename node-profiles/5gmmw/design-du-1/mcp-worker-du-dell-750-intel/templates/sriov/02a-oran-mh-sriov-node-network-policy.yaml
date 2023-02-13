@@ -5,15 +5,14 @@
 apiVersion: sriovnetwork.openshift.io/v1
 kind: SriovNetworkNodePolicy
 metadata:
-  name: oran-mh-netdevice-dell-750-a
+  name: oran-mh-netdevice-{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}
   namespace: openshift-sriov-network-operator
 spec:
   resourceName: oran_mh_netdevice_du
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-mh-netdevice: ""
-    #node-role.kubernetes.io/dell-750-a: ""
-    node-role.kubernetes.io/master: ''
+    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
   deviceType: netdevice
   priority: 10
   #mtu: 1500
@@ -33,15 +32,14 @@ spec:
 apiVersion: sriovnetwork.openshift.io/v1
 kind: SriovNetworkNodePolicy
 metadata:
-  name: oran-mh-vfio-dell-750-a
+  name: oran-mh-vfio-{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}
   namespace: openshift-sriov-network-operator
 spec:
   resourceName: oran_mh_vfio_du
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-mh-vfio: ""
-    #node-role.kubernetes.io/dell-750-a: ""
-    node-role.kubernetes.io/master: ''
+    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
   deviceType: vfio-pci
   priority: 10
   #mtu: 1500
