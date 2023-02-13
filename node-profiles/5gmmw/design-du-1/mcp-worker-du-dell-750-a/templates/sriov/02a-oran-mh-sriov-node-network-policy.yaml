@@ -20,6 +20,7 @@ spec:
   nicSelector:
     #Intel X710 "8086" "1572"
     #Intel XXV810 "8086" "159b"
+    #Mellanox Technologies MT2892 Family [ConnectX-6 Dx] [15b3:101d]
     vendor: "8086"
     deviceID: "159b"
     pfNames:
@@ -46,6 +47,7 @@ spec:
   nicSelector:
     #Intel X710 "8086" "1572"
     #Intel XXV810 "8086" "159b"
+    #Mellanox Technologies MT2892 Family [ConnectX-6 Dx] [15b3:101d]
     vendor: "8086"
     deviceID: "159b"
     pfNames:
