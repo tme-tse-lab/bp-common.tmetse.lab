@@ -1,0 +1,29 @@
+---
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  name: openshift-node-performance-profile-master-sno-vm
+spec:
+  additionalKernelArgs:
+  - idle=poll
+  - rcupdate.rcu_normal_after_boot=0
+  cpu:
+    isolated: 4-15
+    reserved: 0-3
+  hugepages:
+    defaultHugepagesSize: 1G
+    pages:
+    - count: 32
+      size: 1G
+  machineConfigPoolSelector:
+    #pools.operator.machineconfiguration.openshift.io/master-sno-vm: ""
+    pools.operator.machineconfiguration.openshift.io/master: ''
+  net:
+    userLevelNetworking: true
+  nodeSelector:
+    #node-role.kubernetes.io/master-sno-vm: ""
+    node-role.kubernetes.io/master: ''
+  numa:
+    topologyPolicy: restricted
+  realTimeKernel:
+    enabled: true
