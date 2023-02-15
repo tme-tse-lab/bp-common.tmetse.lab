@@ -24,6 +24,6 @@ spec:
     #node-role.kubernetes.io/master-sno-vm: ""
     node-role.kubernetes.io/master: ''
   numa:
-    topologyPolicy: single-numa-node
+    topologyPolicy: restricted
   realTimeKernel:
     enabled: true
