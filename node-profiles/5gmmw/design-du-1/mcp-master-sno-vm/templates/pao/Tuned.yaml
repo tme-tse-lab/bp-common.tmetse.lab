@@ -12,6 +12,7 @@ spec:
       include=openshift-node-performance-openshift-node-performance-profile-master-sno-vm
       [bootloader]
       cmdline_crash=nohz_full=4-15
+      cmdline_removeKernelArgs=-intel_pstate=disable
       [sysctl]
       kernel.timer_migration=1
       [scheduler]
@@ -23,5 +24,5 @@ spec:
   - machineConfigLabels:
       #machineconfiguration.openshift.io/role: master-sno-vm
       machineconfiguration.openshift.io/role: master
-    priority: 19
+    priority: 15
     profile: performance-patch-master-sno-vm

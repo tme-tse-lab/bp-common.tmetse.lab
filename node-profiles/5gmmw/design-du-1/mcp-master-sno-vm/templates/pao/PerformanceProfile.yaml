@@ -5,7 +5,7 @@ metadata:
   name: openshift-node-performance-profile-master-sno-vm
 spec:
   additionalKernelArgs:
-  - idle=poll
+  #- idle=poll
   - rcupdate.rcu_normal_after_boot=0
   cpu:
     isolated: 4-15
