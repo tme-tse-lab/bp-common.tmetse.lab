@@ -13,7 +13,7 @@ spec:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
       operator: Exists
-{{ if hasKey $.Values "cluster"  -}}
+{{ if hasKey $.Values.cluster "ingress_replica"  -}}
   replicas: {{ $.Values.cluster.ingress_replica }}
 {{- else }}
   replicas: {{ $.Values.mgmt.ingress_replica }}
