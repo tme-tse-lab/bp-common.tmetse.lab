@@ -18,4 +18,3 @@ spec:
 {{- else }}
   replicas: {{ $.Values.mgmt.ingress_replica }}
 {{- end }}
-#
