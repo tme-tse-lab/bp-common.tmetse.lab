@@ -4,7 +4,13 @@ kind: IngressController
 metadata:
   name: default
   namespace: openshift-ingress-operator
+#
 spec:
+{{ if hasKey $.Values.cluster "ingress_replica"  -}}
+  replicas: {{ $.Values.cluster.ingress_replica }}
+{{- else }}
+  replicas: {{ $.Values.mgmt.ingress_replica }}
+{{- end }}
   nodePlacement:
     nodeSelector:
       matchLabels:
@@ -13,8 +19,3 @@ spec:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
       operator: Exists
-{{ if hasKey $.Values.cluster "ingress_replica"  -}}
-  replicas: {{ $.Values.cluster.ingress_replica }}
-{{- else }}
-  replicas: {{ $.Values.mgmt.ingress_replica }}
-{{- end }}
