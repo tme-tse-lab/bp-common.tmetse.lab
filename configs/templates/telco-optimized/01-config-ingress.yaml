@@ -1,5 +1,5 @@
 ---
-{{- $replica : = $.Values.cluster.ingress_replica | default 0 }}
+{{- $replica := $.Values.cluster.ingress_replica | default 0 }}
 {{- if $replica -}}
 apiVersion: operator.openshift.io/v1
 kind: IngressController
