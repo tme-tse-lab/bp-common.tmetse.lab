@@ -1,5 +1,5 @@
 ---
-{{- if $.Values.cluster.ingress_replica -}}
+{{- if haskey $.Values "cluster" -}}
 apiVersion: operator.openshift.io/v1
 kind: IngressController
 metadata:
