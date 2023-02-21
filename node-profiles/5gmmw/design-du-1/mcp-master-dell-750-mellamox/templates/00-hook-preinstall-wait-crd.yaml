@@ -1,0 +1,46 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: preinstall-{{ $.Values.site_name }}-{{ $.Values.mcp.mcp_profile }}-wait-crd-job
+  namespace: {{ $.Values.global.gitops.namespace }}
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: {{ $.Values.global.gitops.service_account }}
+      serviceAccountName: {{ $.Values.global.gitops.service_account_name }}
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: {{ $.Values.site_name }}-{{ $.Values.mcp.mcp_profile }}-wait-crd-job
+          image: {{ coalesce $.Values.mgmt.gitops.hook_image $.Values.global.gitops.hook_image }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Checking CRDs available"
+              for cr in sriovnetworks performanceprofiles ptpconfigs
+              do echo "CRD for " $cr
+                while :
+                do
+                  if `oc get CustomResourceDefinition | egrep -q $cr`
+                  then break
+                  else
+                    echo -n "."
+                    sleep $SLEEP
+                  fi
+                done
+                echo
+              done  
+              echo "All done! Hooray!"
+              sleep $SLEEP
+
