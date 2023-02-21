@@ -12,7 +12,8 @@ spec:
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-fh-vfio: ""
-    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
+    #node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
+    node-role.kubernetes.io/master: ''
   #deviceType: vfio-pci
   deviceType: netdevice
   isRdma: true
@@ -42,7 +43,8 @@ spec:
   nodeSelector:
     ran.openshift.io/sriov: ""
     ran.openshift.io/oran-fh-netdevice: ""
-    node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
+    #node-role.kubernetes.io/{{ $.Values.mcp.net_function }}.{{ $.Values.mcp.mcp_profile }}: ""
+    node-role.kubernetes.io/master: ''
   deviceType: netdevice
   priority: 10
   #mtu: 1500
