@@ -18,4 +18,5 @@ spec:
     - effect: NoSchedule
       key: node-role.kubernetes.io/master
       operator: Exists
-  replicas: {{ $replica }}
+  #replicas: {{ $replica }}
+  replicas: 1
