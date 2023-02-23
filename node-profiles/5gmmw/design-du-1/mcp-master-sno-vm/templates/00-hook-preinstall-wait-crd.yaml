@@ -28,8 +28,7 @@ spec:
             - -c
             - |
               echo "Checking CRDs available"
-              #for cr in sriovnetworks performanceprofiles ptpconfigs
-              for cr in performanceprofiles ptpconfigs
+              for cr in sriovnetworks performanceprofiles ptpconfigs
               do echo "CRD for " $cr
                 while :
                 do
