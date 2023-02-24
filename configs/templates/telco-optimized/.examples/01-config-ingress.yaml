@@ -20,3 +20,4 @@ spec:
       operator: Exists
   #replicas: {{ $replica }}
   replicas: 1
+#
