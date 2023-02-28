@@ -32,10 +32,12 @@ spec:
 {{- $schedulable := true }}
 {{ if hasKey $.Values "cluster"  -}}
 {{- $schedulable := $.Values.cluster.mastersSchedulable | default true }}
+              oc delete deployment -n openshift-insights insights-operator
 {{- end }}
 {{- if eq $schedulable true }}
               oc label machineconfigpool master custom-kubelet=max-pods-500
 {{- end }}
               oc label machineconfigpool worker custom-kubelet=max-pods-500
+              oc delete deployment -n openshift-insights insights-operator
               echo "All done! Hooray!"
               sleep $SLEEP
