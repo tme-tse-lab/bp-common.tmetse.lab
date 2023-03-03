@@ -6,7 +6,7 @@ metadata:
     helm.sh/hook: post-install
     helm.sh/hook-delete-policy: hook-succeeded
     #helm.sh/hook-weight: "-5"
-  name: postinstall-telco-optimized-label-mcp-500-job
+  name: postinstall-telco-optimized-disconnected-job
   namespace: {{ $.Values.global.gitops.namespace }}
 spec:
   template:
@@ -19,18 +19,21 @@ spec:
       containers:
         - image: {{ coalesce $.Values.mgmt.gitops.hook_image $.Values.global.gitops.hook_image }}
           imagePullPolicy: IfNotPresent
-          name: telco-optimized-label-mcp-500-job
+          name: telco-optimized-disconnected-job
           env:
             - name: SLEEP
-              value: "3"
+              value: "5"
           command:
             - /bin/bash
             - -c
             - |
               echo "PostInstall Hook to prepare for disconnected environment"
 {{ if hasKey $.Values "cluster"  -}}
+              #
               oc delete deployment -n openshift-insights insights-operator
+              #
               oc patch clusterversion version -p '{"spec":{"upstream":"https://service-route-openshift-update-service.apps.{{ $.Values.mgmt.name }}.{{ $.Values.global.domain }}/api/upgrades_info/v1/graph"}}' --type merge
+              #
 {{- end }}
               echo "All done! Hooray!"
               sleep $SLEEP
