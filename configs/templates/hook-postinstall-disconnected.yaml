@@ -28,6 +28,7 @@ spec:
             - -c
             - |
               echo "PostInstall Hook to prepare for disconnected environment"
+              sleep $SLEEP
 {{- if hasKey $.Values "cluster"  }}
               #
               oc delete deployment -n openshift-insights insights-operator
