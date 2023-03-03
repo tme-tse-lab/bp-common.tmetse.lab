@@ -38,6 +38,6 @@ spec:
               oc label machineconfigpool master custom-kubelet=max-pods-500
 {{- end }}
               oc label machineconfigpool worker custom-kubelet=max-pods-500
-              oc delete deployment -n openshift-insights insights-operator
+              #oc delete deployment -n openshift-insights insights-operator
               echo "All done! Hooray!"
               sleep $SLEEP
