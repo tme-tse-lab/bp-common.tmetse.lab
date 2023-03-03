@@ -35,6 +35,8 @@ spec:
               #
               oc patch clusterversion version -p '{"spec":{"upstream":"https://service-route-openshift-update-service.apps.{{ $.Values.mgmt.name }}.{{ $.Values.global.domain }}/api/upgrades_info/v1/graph"}}' --type merge
               #
+              oc patch proxy/cluster      --type=merge      --patch='{"spec":{"trustedCA":{"name":"registry-ca-local"}}}'
+              #
 {{- end }}
               echo "All done! Hooray!"
               sleep $SLEEP
