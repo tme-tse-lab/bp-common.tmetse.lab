@@ -1,0 +1,36 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ldap-group-syncer
+  namespace: openshift-authentication
+  labels:
+    app: cronjob-ldap-group-sync
+data:
+  ldap-group-sync.yaml: |
+    kind: LDAPSyncConfig
+    apiVersion: v1
+    url: ldap://idm01.tmetse.lab:389
+    bindDN: uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=tmetse,dc=lab
+    bindPassword:
+      file: "/etc/secrets/bindPassword"
+    ca: "/etc/origin/master/ca.crt"
+    insecure: false
+    rfc2307:
+        groupsQuery:
+          baseDN: "CN=groups,CN=accounts,DC=tmetse,DC=lab"
+          scope: sub
+          derefAliases: never
+          filter: (description=OCP*)
+        groupUIDAttribute: dn
+        groupNameAttributes: [ cn ]
+        groupMembershipAttributes: [ member ]
+        usersQuery:
+            baseDN: "CN=users,CN=accounts,DC=tmetse,DC=lab"
+            scope: sub
+            derefAliases: never
+            pageSize: 0
+        userUIDAttribute: dn
+        userNameAttributes: [ uid ]
+        tolerateMemberNotFoundErrors: true
+        tolerateMemberOutOfScopeErrors: true
