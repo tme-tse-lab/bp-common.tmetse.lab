@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: idm01-ca-cm
+  namespace: openshift-authentication
+data:
+  ca.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}
