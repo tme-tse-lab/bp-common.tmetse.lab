@@ -10,4 +10,4 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: ocp_admin
+  name: ocp_cluster_admin
