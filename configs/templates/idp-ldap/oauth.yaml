@@ -22,6 +22,6 @@ spec:
       bindPassword: 
         name: idm01-binddn-secret
       ca: 
-        name: idm01-ca-cm
+        name: registry-ca-local
       insecure: false 
       url: "ldap://idm01.tmetse.lab/cn=users,cn=accounts,dc=tmetse,dc=lab?uid?sub?(uid=*)"
