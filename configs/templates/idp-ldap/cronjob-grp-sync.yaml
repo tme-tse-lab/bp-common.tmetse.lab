@@ -24,7 +24,7 @@ spec:
         spec:
           containers:
             - name: ldap-group-sync
-              image: "registry.redhat.io/openshift4/ose-tools-rhel8:latest"
+              image: {{ coalesce $.Values.mgmt.gitops.hook_image $.Values.global.gitops.hook_image }}
               command:
                 - "/bin/bash"
                 - "-c"
