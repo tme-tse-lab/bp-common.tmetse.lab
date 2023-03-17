@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: v4-0-config-user-idp-0-ca
   namespace: openshift-authentication
-data: {}
-#  {{ $.Values.mgmt.registry.url }}: {{ toYaml $.Values.global.ai.ca | indent 2 }}
-#  updateservice-registry: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
-#  ca-bundle.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
+data:
+  {{ $.Values.mgmt.registry.url }}: {{ toYaml $.Values.global.ai.ca | indent 2 }}
+  updateservice-registry: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
+  ca-bundle.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
