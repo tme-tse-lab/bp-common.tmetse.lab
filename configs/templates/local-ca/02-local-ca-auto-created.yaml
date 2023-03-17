@@ -6,4 +6,5 @@ metadata:
 data: 
   {{ $.Values.mgmt.registry.url }}: {{ toYaml $.Values.global.ai.ca | indent 2 }}
   updateservice-registry: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
-  ca-bundle.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}  
+  ca-bundle.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}
+  ca.crt: {{ toYaml $.Values.global.ai.ca | indent 2 }}
